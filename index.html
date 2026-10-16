@@ -460,7 +460,6 @@ section{padding-block:80px}
 .tag{font-family:var(--f-mono); font-size:11px; padding:3px 7px; border:1px solid var(--line); border-radius:2px; color:var(--muted); letter-spacing:.02em}
 .tag.award{border-color:color-mix(in srgb, var(--accent) 45%, var(--line)); color:var(--ink)}
 /* кейсы раскрываются по клику: в свёрнутом виде видны логотип, название и главный результат */
-:root{interpolate-size:allow-keywords}
 .cf-details{display:block}
 .cf-sum{list-style:none; cursor:pointer; gap:16px; border-radius:2px}
 .cf-sum::-webkit-details-marker{display:none}
@@ -469,14 +468,11 @@ section{padding-block:80px}
 .cf-result{font-size:15px; line-height:1.4; color:var(--muted)}
 .cf-sum .cf-wordmark{margin-left:0}
 .cf-toggle{flex:none; width:36px; height:36px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; background:var(--surface); transition:background-color .2s, border-color .2s}
-.cf-toggle::before{content:""; width:8px; height:8px; border-right:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); transform:translateY(-2px) rotate(45deg); transition:transform .3s var(--ease)}
-.cf-details[open] .cf-toggle::before{transform:translateY(2px) rotate(225deg)}
+.cf-toggle::before{content:""; width:8px; height:8px; border-right:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); transform:translateY(-2px) rotate(45deg); transition:transform .6s cubic-bezier(.33,1,.68,1)}
+.cf-details[open]:not([data-closing="1"]) .cf-toggle::before{transform:translateY(2px) rotate(225deg)}
 .cf-sum:hover .cf-toggle, .cf-sum:focus-visible .cf-toggle{background:var(--accent); border-color:var(--accent)}
 .cf-sum:hover .cf-toggle::before, .cf-sum:focus-visible .cf-toggle::before{border-color:var(--accent-ink)}
-.cf-details[open] > .cf-sum{margin-bottom:24px}
-.cf-details::details-content{block-size:0; overflow:clip; transition:block-size .35s var(--ease), content-visibility .35s allow-discrete}
-.cf-details[open]::details-content{block-size:auto}
-.tile.case-feature:has(.cf-details:not([open])){padding-block:20px}
+.cf-details > .cf-body{padding-top:24px}
 @media (max-width:600px){ .cf-sum .cf-wordmark{display:none} .cf-result{font-size:14px} .cf-sum .logo-wide{width:48px} .cf-sum{gap:12px} }
 /* развёрнутая карточка кейса: график, список работ, ролики */
 .case-feature{grid-column:1 / -1; gap:22px}
@@ -1068,6 +1064,33 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
       function done(){ btn.textContent='Скопировано'; setTimeout(function(){ btn.textContent='Скопировать'; }, 1600); }
       function fallback(){ var r=document.createRange(); r.selectNodeContents(el); var s=getSelection(); s.removeAllRanges(); s.addRange(r); btn.textContent='Выделено'; }
       try{ navigator.clipboard.writeText(text).then(done, fallback); }catch(e){ fallback(); }
+    });
+  });
+
+  /* плавное раскрытие кейсов: высота и прозрачность анимируются вместе */
+  var reduce=matchMedia('(prefers-reduced-motion: reduce)');
+  document.querySelectorAll('.cf-details').forEach(function(d){
+    var sum=d.querySelector('summary'), body=d.querySelector('.cf-body'), anim=null;
+    if(!sum || !body || !body.animate) return;
+    sum.addEventListener('click', function(e){
+      if(reduce.matches) return;
+      e.preventDefault();
+      var opening=!d.open || d.dataset.closing==='1';
+      var from=d.open ? body.getBoundingClientRect().height : 0;
+      if(anim){ anim.cancel(); }
+      body.style.overflow='hidden';
+      if(opening){
+        d.dataset.closing=''; d.open=true;
+        var to=body.scrollHeight;
+        anim=body.animate([{height:from+'px', paddingTop:(from?24:0)+'px', opacity:from?1:0, transform:'translateY('+(from?0:-6)+'px)'},{height:to+'px', paddingTop:'24px', opacity:1, transform:'translateY(0)'}],{duration:Math.max(560, Math.min(860, to*1.1)), easing:'cubic-bezier(.33,1,.68,1)'});
+      } else {
+        d.dataset.closing='1';
+        anim=body.animate([{height:from+'px', paddingTop:'24px', opacity:1},{height:'0px', paddingTop:'0px', opacity:0}],{duration:Math.max(440, Math.min(640, from*0.8)), easing:'cubic-bezier(.65,0,.35,1)'});
+      }
+      anim.onfinish=function(){
+        if(d.dataset.closing==='1'){ d.open=false; d.dataset.closing=''; }
+        body.style.overflow=''; anim=null;
+      };
     });
   });
 
