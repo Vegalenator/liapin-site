@@ -468,7 +468,7 @@ section{padding-block:80px}
 .cf-result{font-size:15px; line-height:1.4; color:var(--muted)}
 .cf-sum .cf-wordmark{margin-left:0}
 .cf-toggle{flex:none; width:36px; height:36px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; background:var(--surface); transition:background-color .2s, border-color .2s}
-.cf-toggle::before{content:""; width:8px; height:8px; border-right:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); transform:translateY(-2px) rotate(45deg); transition:transform .6s cubic-bezier(.33,1,.68,1)}
+.cf-toggle::before{content:""; width:8px; height:8px; border-right:1.5px solid var(--ink); border-bottom:1.5px solid var(--ink); transform:translateY(-2px) rotate(45deg); transition:transform .8s cubic-bezier(.25,.8,.25,1)}
 .cf-details[open]:not([data-closing="1"]) .cf-toggle::before{transform:translateY(2px) rotate(225deg)}
 .cf-sum:hover .cf-toggle, .cf-sum:focus-visible .cf-toggle{background:var(--accent); border-color:var(--accent)}
 .cf-sum:hover .cf-toggle::before, .cf-sum:focus-visible .cf-toggle::before{border-color:var(--accent-ink)}
@@ -671,7 +671,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
       <div class="hero-text">
         <h1>Александр Ляпин</h1>
         <p class="trio">Коммуникации<b>.</b> Медиа<b>.</b> Аналитика<b>.</b></p>
-        <p class="lede"><span class="ln">Выстраиваю коммуникационные <br class="m">стратегии компаний и первых лиц,</span><span class="ln">запускаю медиапроекты <br class="m">и измеряю их эффективность.</span><span class="ln">Работал в финансовом, технологическом <br class="m">и государственном секторах.</span></p>
+        <p class="lede"><span class="ln">Выстраиваю коммуникационные <br class="m">стратегии компаний и первых лиц,</span><span class="ln">запускаю медиапроекты <br class="m">и измеряю их эффективность.</span><span class="ln">Работал в финансовом, технологическом, <br class="m">государственном секторах</span><span class="ln">и в крупнейших деловых медиа.</span></p>
         <div class="hero-cta">
           <a class="btn btn-primary" href="#contact">Обсудить задачу</a>
           <a class="btn btn-ghost" href="#comms">Смотреть кейсы</a>
@@ -1082,10 +1082,12 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
       if(opening){
         d.dataset.closing=''; d.open=true;
         var to=body.scrollHeight;
-        anim=body.animate([{height:from+'px', paddingTop:(from?24:0)+'px', opacity:from?1:0, transform:'translateY('+(from?0:-6)+'px)'},{height:to+'px', paddingTop:'24px', opacity:1, transform:'translateY(0)'}],{duration:Math.max(560, Math.min(860, to*1.1)), easing:'cubic-bezier(.33,1,.68,1)'});
+        var dur=Math.max(760, Math.min(1100, to*1.5));
+        anim=body.animate([{height:from+'px', paddingTop:(from?24:0)+'px'},{height:to+'px', paddingTop:'24px'}],{duration:dur, easing:'cubic-bezier(.25,.8,.25,1)'});
+        if(!from) body.animate([{opacity:0, transform:'translateY(-10px)'},{opacity:1, transform:'translateY(0)'}],{duration:dur*0.8, delay:dur*0.15, easing:'cubic-bezier(.25,.8,.25,1)', fill:'backwards'});
       } else {
         d.dataset.closing='1';
-        anim=body.animate([{height:from+'px', paddingTop:'24px', opacity:1},{height:'0px', paddingTop:'0px', opacity:0}],{duration:Math.max(440, Math.min(640, from*0.8)), easing:'cubic-bezier(.65,0,.35,1)'});
+        anim=body.animate([{height:from+'px', paddingTop:'24px', opacity:1, offset:0},{opacity:0, offset:.6},{height:'0px', paddingTop:'0px', opacity:0, offset:1}],{duration:Math.max(560, Math.min(820, from*1.1)), easing:'cubic-bezier(.45,0,.25,1)'});
       }
       anim.onfinish=function(){
         if(d.dataset.closing==='1'){ d.open=false; d.dataset.closing=''; }
