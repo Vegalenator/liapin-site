@@ -556,6 +556,12 @@ section{padding-block:80px}
 .li-links i, .hl-link i{font-style:normal; color:var(--accent)}
 .hl{display:grid; grid-template-columns:auto minmax(0,1fr); gap:20px; align-items:start; padding:20px 22px; background:var(--surface); border:1px solid var(--line); border-radius:3px}
 .hl-cup{display:block; width:auto; height:150px; max-width:100%}
+.hl.hl--photo{position:relative; isolation:isolate; overflow:hidden; border-color:transparent; background:#0B1020 url(img/premia-bg.webp) center 40% / cover no-repeat; color:#EEF1F7}
+.hl.hl--photo::before{content:""; position:absolute; inset:0; z-index:-1; background:linear-gradient(100deg, rgba(9,13,26,.93) 0%, rgba(9,13,26,.86) 45%, rgba(9,13,26,.62) 100%)}
+.hl.hl--photo .hl-cup{filter:drop-shadow(0 6px 18px rgba(0,0,0,.55))}
+.hl.hl--photo .cf-label{color:rgba(238,241,247,.62)}
+.hl.hl--photo p{color:rgba(238,241,247,.8)}
+.hl.hl--photo .hl-link{color:#fff}
 .cf-head .cf-wordmark{width:auto; height:30px; max-width:42%; margin-left:auto; flex:none; color:var(--ink)}
 .hl--stack{grid-template-columns:minmax(0,1fr)}
 .hl-preview{display:block; overflow:hidden; border-radius:2px; line-height:0}
@@ -828,7 +834,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
             </div>
             <div class="cf-side">
               <h4 class="cf-label">Ключевые мероприятия</h4>
-              <article class="hl">
+              <article class="hl hl--photo">
                 <img class="hl-cup" src="img/premia-cup.webp" alt="Статуэтка Национальной премии интернет-контента" width="97" height="340">
                 <div class="hl-text">
                   <span class="cf-label">Запуск</span>
