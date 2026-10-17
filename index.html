@@ -430,7 +430,7 @@ section{padding-block:80px}
 @media (max-width:760px){ .sec-head{grid-template-columns:minmax(0,1fr)} }
 /* у раздела «Аналитика» нет подводки: заголовок на всю ширину и в одну строку */
 #analytics .sec-head{grid-template-columns:minmax(0,1fr)}
-#an-h{white-space:nowrap}
+@media (min-width:601px){ #an-h{white-space:nowrap} }
 
 /* ---------- три направления ---------- */
 .dirs-sec{padding-block:48px 72px}
@@ -1036,7 +1036,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
   <section id="analytics" class="alt" aria-labelledby="an-h">
     <div class="wrap">
       <div class="sec-head">
-        <div><span class="mono sec-kicker">03 · Аналитика</span><h2 id="an-h">Методики и проекты</h2></div>
+        <div><span class="mono sec-kicker">03 · Аналитика</span><h2 id="an-h">Методики и исследования</h2></div>
       </div>
       <div class="papers">
         <a class="tile paper" href="https://zenodo.org/records/15332887" target="_blank" rel="noopener">
