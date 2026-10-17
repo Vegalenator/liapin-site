@@ -482,6 +482,7 @@ section{padding-block:80px}
 .hl--link:hover, .hl--link:focus-visible{color:inherit; transform:translateY(-4px); border-color:color-mix(in srgb, var(--accent) 35%, var(--line)); box-shadow:0 16px 32px -18px color-mix(in srgb, var(--ink) 45%, transparent)}
 .hl--link:hover .hl-preview img, .hl--link:focus-visible .hl-preview img{transform:scale(1.03)}
 .hl--link:hover strong{color:var(--accent)}
+.hl--photo.hl--link:hover h5, .hl--photo.hl--link:focus-visible h5{color:#fff; text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:4px; text-decoration-thickness:1px}
 .vrow.vrow--solo .play{width:34px; height:34px}
 .cf-side > .cf-label{margin:0 0 -4px}
 .cf-side > .cf-label--gap{margin-top:12px}
@@ -836,15 +837,14 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
             </div>
             <div class="cf-side">
               <h4 class="cf-label">Ключевые мероприятия</h4>
-              <article class="hl hl--photo" style="--hl-bg:url(img/premia-bg.webp)">
+              <a class="hl hl--photo hl--link" href="https://xn--h1aax.xn--p1ai/premia/" target="_blank" rel="noopener" style="--hl-bg:url(img/premia-bg.webp)">
                 <img class="hl-cup" src="img/premia-cup.webp" alt="Статуэтка Национальной премии интернет-контента" width="97" height="340">
                 <div class="hl-text">
                   <span class="cf-label">Запуск</span>
                   <h5>Национальная премия интернет-контента</h5>
                   <p>Подготовил церемонии 2022 и 2023 годов. Сегодня это ежегодная национальная премия для авторов созидательного контента.</p>
-                  <a class="hl-link" href="https://xn--h1aax.xn--p1ai/premia/" target="_blank" rel="noopener">Сайт премии <i>↗</i></a>
                 </div>
-              </article>
+              </a>
               <article class="hl hl--photo" style="--hl-bg:url(img/pmef-bg.webp); --hl-pos:center 30%">
                 <img class="hl-emblem" src="img/spief22.webp" alt="Эмблема ПМЭФ-2022" width="84" height="84">
                 <div class="hl-text">
