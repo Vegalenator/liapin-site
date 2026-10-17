@@ -473,6 +473,8 @@ section{padding-block:80px}
 .cf-mark .cf-gpb-word{width:auto; height:15px; color:var(--brand-gpb)}
 .cf-sum .cf-mark .cf-wordmark{max-width:none; width:auto; height:30px}
 .cf-sum .cf-mark .cf-wordmark[viewBox="0 0 200 42"]{height:26px; color:var(--brand-dobro)}
+/* ролики Газпромбанка крупнее: столбик по высоте вровень с графиками и списком */
+@media (min-width:961px){ .cf-video--fill .vrow{grid-template-columns:168px minmax(0,1fr)} }
 .vrow.vrow--solo{grid-template-columns:minmax(0, 250px)}
 /* плашка-ссылка целиком: подсветка и лёгкое увеличение фото при наведении */
 .hl--link{color:inherit; text-decoration:none; transition:transform .35s var(--ease), border-color .25s, box-shadow .35s var(--ease)}
@@ -873,7 +875,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
                 <li>Организация участия компании в ПМЮФ-2019: подготовка вице-президентов ГПБ к сессиям, видеоконтент для соцсетей</li>
               </ul>
             </div>
-            <div class="cf-video">
+            <div class="cf-video cf-video--fill">
               <h4 class="cf-label">Рекламные ролики</h4>
               <div class="vlist">
                 <a class="vrow" href="https://www.youtube.com/watch?v=k63RROsDkho" target="_blank" rel="noopener" aria-label="Ролик на YouTube: Павел Воля в рекламе Газпромбанка"><span class="vid"><img src="img/yt/k63RROsDkho.webp" alt="" width="400" height="225" loading="lazy"><span class="play" aria-hidden="true"></span></span><span class="vcap">«Лёгкий кредит» с Павлом&nbsp;Волей</span></a>
