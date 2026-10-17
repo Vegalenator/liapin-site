@@ -473,7 +473,12 @@ section{padding-block:80px}
 .cf-mark .cf-gpb-word{width:auto; height:15px; color:var(--brand-gpb)}
 .cf-sum .cf-mark .cf-wordmark{max-width:none; width:auto; height:30px}
 .cf-sum .cf-mark .cf-wordmark[viewBox="0 0 200 42"]{height:26px; color:var(--brand-dobro)}
-.vrow.vrow--solo{grid-template-columns:minmax(0, 200px)}
+.vrow.vrow--solo{grid-template-columns:minmax(0, 250px)}
+/* плашка-ссылка целиком: подсветка и лёгкое увеличение фото при наведении */
+.hl--link{color:inherit; text-decoration:none; transition:border-color .25s, box-shadow .25s}
+.hl--link:hover, .hl--link:focus-visible{color:inherit; border-color:color-mix(in srgb, var(--accent) 35%, var(--line)); box-shadow:0 10px 28px -18px color-mix(in srgb, var(--ink) 40%, transparent)}
+.hl--link:hover .hl-preview img, .hl--link:focus-visible .hl-preview img{transform:scale(1.03)}
+.hl--link:hover strong{color:var(--accent)}
 .vrow.vrow--solo .play{width:34px; height:34px}
 .cf-side > .cf-label{margin:0 0 -4px}
 .cf-side > .cf-label--gap{margin-top:12px}
@@ -544,7 +549,7 @@ section{padding-block:80px}
 /* фото в обтравку: текст обтекает уменьшенное фото */
 .hl--wrap{display:flow-root}
 .hl--wrap .hl-preview{float:left; width:46%; margin:2px 18px 8px 0}
-.hl.hl--wrap p{margin:0 0 10px; font-size:15px; line-height:1.5; color:var(--ink)}
+.hl.hl--wrap p{margin:0; font-size:15px; line-height:1.5; color:var(--ink)}
 .hl--wrap strong{font-weight:600}
 @media (max-width:420px){ .hl--wrap .hl-preview{float:none; width:100%; margin:0 0 12px} }
 .hl-video{position:relative}
@@ -934,11 +939,10 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
                 </div>
               </div>
               <h4 class="cf-label cf-label--gap">Ключевое мероприятие</h4>
-              <article class="hl hl--wrap">
-                <a class="hl-preview" href="https://dobro.press/dobro-media/news/v-moskve-zavershilas-dobro-konferencziya-2024" target="_blank" rel="noopener"><img src="img/dobro-novikov.webp" alt="Сергей Новиков выступает на Добро.Конференции-2024" width="640" height="361" loading="lazy"></a>
+              <a class="hl hl--wrap hl--link" href="https://dobro.press/dobro-media/news/v-moskve-zavershilas-dobro-konferencziya-2024" target="_blank" rel="noopener" aria-label="Итоги Добро.Конференции-2024 на Добро.Медиа">
+                <span class="hl-preview"><img src="img/dobro-novikov.webp" alt="Сергей Новиков выступает на Добро.Конференции-2024" width="640" height="361" loading="lazy"></span>
                 <p><strong>Добро.Конференция-2024.</strong> 2000 участников на площадке Международной выставки «Россия». При участии начальника Управления по общественным проектам Администрации Президента РФ Сергея Новикова и вице-премьера Дмитрия Чернышенко.</p>
-                <a class="hl-link" href="https://dobro.press/dobro-media/news/v-moskve-zavershilas-dobro-konferencziya-2024" target="_blank" rel="noopener">Итоги конференции <i>↗</i></a>
-              </article>
+              </a>
             </div>
           </div>
           </details>
