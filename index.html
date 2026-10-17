@@ -565,6 +565,12 @@ section{padding-block:80px}
 .hl.hl--photo .hl-link{color:#fff}
 .hl.hl--photo .hl-stats dd{color:rgba(238,241,247,.62)}
 .hl.hl--photo .hl-emblem{box-shadow:0 6px 18px rgba(0,0,0,.45)}
+.hl.hl--cap{display:flex; flex-direction:column; justify-content:flex-end; min-height:330px; padding-top:150px}
+.hl.hl--cap::before{background:linear-gradient(180deg, rgba(9,13,26,.18) 0%, rgba(9,13,26,.38) 32%, rgba(9,13,26,.86) 62%, rgba(9,13,26,.95) 100%)}
+.hl.hl--cap p{font-size:15px; line-height:1.5; color:rgba(238,241,247,.86)}
+.hl.hl--cap strong{color:#fff; font-weight:600}
+@media (max-width:600px){ .hl.hl--cap{padding-top:230px; background-position:22% 0} }
+.hl--photo.hl--link:hover strong, .hl--photo.hl--link:focus-visible strong{color:#fff; text-decoration:underline; text-decoration-color:var(--accent); text-underline-offset:4px; text-decoration-thickness:1px}
 .cf-head .cf-wordmark{width:auto; height:30px; max-width:42%; margin-left:auto; flex:none; color:var(--ink)}
 .hl--stack{grid-template-columns:minmax(0,1fr)}
 .hl-preview{display:block; overflow:hidden; border-radius:2px; line-height:0}
@@ -981,8 +987,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
                 </div>
               </div>
               <h4 class="cf-label cf-label--gap">Ключевое мероприятие</h4>
-              <a class="hl hl--wrap hl--link" href="https://dobro.press/dobro-media/news/v-moskve-zavershilas-dobro-konferencziya-2024" target="_blank" rel="noopener" aria-label="Итоги Добро.Конференции-2024 на Добро.Медиа">
-                <span class="hl-preview"><img src="img/dobro-novikov.webp" alt="Сергей Новиков выступает на Добро.Конференции-2024" width="640" height="361" loading="lazy"></span>
+              <a class="hl hl--photo hl--cap hl--link" href="https://dobro.press/dobro-media/news/v-moskve-zavershilas-dobro-konferencziya-2024" target="_blank" rel="noopener" aria-label="Итоги Добро.Конференции-2024 на Добро.Медиа" style="--hl-bg:url(img/dobro-conf-bg.webp); --hl-pos:center 22%">
                 <p><strong>Добро.Конференция-2024.</strong> 2000 участников на площадке Международной выставки «Россия». При участии начальника Управления по общественным проектам Администрации Президента РФ Сергея Новикова и вице-премьера Дмитрия Чернышенко.</p>
               </a>
             </div>
