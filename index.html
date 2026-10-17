@@ -475,8 +475,8 @@ section{padding-block:80px}
 .cf-sum .cf-mark .cf-wordmark[viewBox="0 0 200 42"]{height:26px; color:var(--brand-dobro)}
 .vrow.vrow--solo{grid-template-columns:minmax(0, 250px)}
 /* плашка-ссылка целиком: подсветка и лёгкое увеличение фото при наведении */
-.hl--link{color:inherit; text-decoration:none; transition:border-color .25s, box-shadow .25s}
-.hl--link:hover, .hl--link:focus-visible{color:inherit; border-color:color-mix(in srgb, var(--accent) 35%, var(--line)); box-shadow:0 10px 28px -18px color-mix(in srgb, var(--ink) 40%, transparent)}
+.hl--link{color:inherit; text-decoration:none; transition:transform .35s var(--ease), border-color .25s, box-shadow .35s var(--ease)}
+.hl--link:hover, .hl--link:focus-visible{color:inherit; transform:translateY(-4px); border-color:color-mix(in srgb, var(--accent) 35%, var(--line)); box-shadow:0 16px 32px -18px color-mix(in srgb, var(--ink) 45%, transparent)}
 .hl--link:hover .hl-preview img, .hl--link:focus-visible .hl-preview img{transform:scale(1.03)}
 .hl--link:hover strong{color:var(--accent)}
 .vrow.vrow--solo .play{width:34px; height:34px}
