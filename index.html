@@ -521,6 +521,16 @@ section{padding-block:80px}
 .vid:hover img, .vid:focus-visible img{transform:scale(1.05)}
 .vid:hover .play, .vid:focus-visible .play{background:var(--accent)}
 .vid:hover .play::before, .vid:focus-visible .play::before{border-left-color:var(--accent-ink)}
+.cf-label.cf-label--next{margin-top:22px}
+.sps{display:grid; grid-template-columns:repeat(3, minmax(0,1fr)); gap:8px}
+.sp{display:flex; flex-direction:column; gap:7px; min-width:0; color:inherit; text-decoration:none}
+.sp-meta{display:flex; flex-direction:column; gap:3px; font-size:12px; line-height:1.2; color:var(--muted)}
+.sp-meta b{font-weight:600; font-size:13px; color:var(--ink); transition:color .2s}
+.sp-shot{display:block; margin-top:auto; aspect-ratio:16 / 10; overflow:hidden; border-radius:2px; background:var(--soft); box-shadow:0 0 0 1px var(--line); transition:box-shadow .2s}
+.sp-shot img{display:block; width:100%; height:100%; object-fit:cover; object-position:top; transition:transform .4s var(--ease)}
+.sp:hover .sp-shot img, .sp:focus-visible .sp-shot img{transform:scale(1.05)}
+.sp:hover .sp-shot, .sp:focus-visible .sp-shot{box-shadow:0 0 0 1px var(--accent)}
+.sp:hover .sp-meta b, .sp:focus-visible .sp-meta b{color:var(--accent)}
 .cf-head .cf-logo{width:30px; height:30px; flex:none; border-radius:7px}
 .cf-charts{display:grid; gap:22px; min-width:0}
 .vlist{display:grid; gap:10px}
@@ -780,6 +790,12 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
                 <a class="vid" href="https://www.youtube.com/watch?v=onLd3j-1kDo" target="_blank" rel="noopener" aria-label="Ролик на YouTube: СБП. Переводится как хочется"><img src="img/yt/onLd3j-1kDo.webp" alt="" width="400" height="225" loading="lazy"><span class="play" aria-hidden="true"></span></a>
                 <a class="vid" href="https://www.youtube.com/watch?v=R9xyY0ypnPk" target="_blank" rel="noopener" aria-label="Ролик на YouTube: СБП. Уже в приложении вашего банка"><img src="img/yt/R9xyY0ypnPk.webp" alt="" width="400" height="225" loading="lazy"><span class="play" aria-hidden="true"></span></a>
                 <a class="vid" href="https://www.youtube.com/watch?v=2Ve6rZB8OzY" target="_blank" rel="noopener" aria-label="Ролик на YouTube: СБП. Уже в приложении вашего банка, версия 2"><img src="img/yt/2Ve6rZB8OzY.webp" alt="" width="400" height="225" loading="lazy"><span class="play" aria-hidden="true"></span></a>
+              </div>
+              <h4 class="cf-label cf-label--next">Спецпроекты</h4>
+              <div class="sps">
+                <a class="sp" href="https://aif.ru/money/sbp_nspk/" target="_blank" rel="noopener"><span class="sp-meta"><b>АиФ</b>эксплейнер</span><span class="sp-shot"><img src="img/sp/aif.webp" alt="Спецпроект АиФ «Деньги: переводить мгновенно и бесплатно»" width="480" height="300" loading="lazy"></span></a>
+                <a class="sp" href="https://sp.pravilamag.ru/nspk2020/" target="_blank" rel="noopener"><span class="sp-meta"><b>Правила жизни</b>тест</span><span class="sp-shot"><img src="img/sp/pravila.webp" alt="Тест «Правил жизни» «Сменить работу или уехать жить в Лондон?»" width="480" height="300" loading="lazy"></span></a>
+                <a class="sp" href="https://sbp-game.mel.fm/" target="_blank" rel="noopener"><span class="sp-meta"><b>Мел</b>игра</span><span class="sp-shot"><img src="img/sp/mel.webp" alt="Игра «Мела» «Знаете ли вы, на что стоит тратить деньги»" width="480" height="300" loading="lazy"></span></a>
               </div>
             </div>
           </div>
