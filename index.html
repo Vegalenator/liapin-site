@@ -535,6 +535,11 @@ section{padding-block:80px}
 .cf-head .cf-logo{width:30px; height:30px; flex:none; border-radius:7px}
 .cf-charts{display:grid; gap:22px; min-width:0}
 .vlist{display:grid; gap:10px}
+.vpair{display:grid; grid-template-columns:repeat(2, minmax(0,1fr)); gap:16px}
+.vcell{display:flex; flex-direction:column; min-width:0}
+.vcell .vrow{margin-top:auto}
+.vpair .vrow.vrow--solo{grid-template-columns:minmax(0,1fr)}
+.hl .hl-plain p.hl-award{color:var(--ink); font-weight:500}
 .vrow{display:grid; grid-template-columns:132px minmax(0,1fr); gap:14px; align-items:center; text-decoration:none; color:var(--ink)}
 .vrow .vcap{font-size:14px; line-height:1.35}
 .vrow:hover .vcap{color:var(--accent)}
@@ -812,7 +817,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
                 <ul>
                   <li>Формирование команды департамента</li>
                   <li>Позиционирование ИРИ и генерального директора</li>
-                  <li><span>Ребрендинг организации. <a href="https://web.archive.org/web/20211125120119/https://%D0%B8%D1%80%D0%B8.%D1%80%D1%84/" target="_blank" rel="noopener">Было</a> · <a href="https://xn--h1aax.xn--p1ai/" target="_blank" rel="noopener">Стало</a></span></li>
+                  <li><span>Ребрендинг организации. <a href="https://web.archive.org/web/20211125120119/https://%D0%B8%D1%80%D0%B8.%D1%80%D1%84/" target="_blank" rel="noopener">Было</a> · <a href="https://xn--h1aax.xn--p1ai/" target="_blank" rel="noopener">Стало</a> (премия <span style="white-space:nowrap">«Золотой сайт-2023»</span>)</span></li>
                   <li>Выстраивание взаимодействия с индустрией</li>
                   <li><span>Проект «Умное кино» с Российским обществом «Знание»:<br>19 документальных фильмов<span class="li-links"><a href="https://xn--h1aax.xn--p1ai/news/iri-okazhet-grantovuyu-podderzhku-dokumentalistam/" target="_blank" rel="noopener">Гранты ИРИ <i>↗</i></a><a href="https://znanierussia.ru/news/sostoyalas-premera-filma-pobeditelya-proekta-znaniekino-ob-istorii-russkoj-kultury" target="_blank" rel="noopener">Премьера фильма <i>↗</i></a></span></span></li>
                   <li><span>Создание научных медиапроектов<span class="li-links"><a href="https://vk.ru/naykadlyavseh" target="_blank" rel="noopener">«Наука для всех» <i>↗</i></a><a href="https://premier.one/show/strasti-po-grantam/season/1/episode/1" target="_blank" rel="noopener">«Страсти по грантам» <i>↗</i></a><a href="https://www.youtube.com/watch?v=ZWoiQyRAqZQ" target="_blank" rel="noopener">«Отнаучим!» <i>↗</i></a></span></span></li>
@@ -927,7 +932,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
                 <div class="hl-text hl-plain">
                   <p>8+ млн учеников прошли урок по всей России.</p>
                   <p>Совместно с Минцифры, Минпросвещения, Сбером, Яндексом, Mail.ru Group, 1С и «Лабораторией Касперского».</p>
-                  <a class="hl-link" href="https://xn--h1adlhdnlo2c.xn--p1ai/" target="_blank" rel="noopener">Сайт проекта <i>↗</i></a>
+                  <p class="hl-award">Премия «Серебряный лучник-2021»</p>
                 </div>
               </article>
             </div>
@@ -943,7 +948,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
                 <h4 class="cf-label">Что сделано</h4>
                 <ul>
                   <li>Ребрендинг экосистемы Добро.рф</li>
-                  <li>Публичное позиционирование председателя Ассоциации и комитета Госдумы по молодёжной политике Артёма Метелева</li>
+                  <li><span>Публичное позиционирование председателя Ассоциации и комитета Госдумы по молодёжной политике Артёма Метелева<span class="li-links"><a href="https://artem-metelev.ru/" target="_blank" rel="noopener">Сайт <i>↗</i></a><a href="https://t.me/artemmetelev" target="_blank" rel="noopener">Телеграм-канал <i>↗</i></a></span></span></li>
                   <li>Подготовка и проведение Добро.Конференции (2000 участников) с деловой и обучающей программой и юбилейной выставкой с участием вице-премьера Дмитрия Чернышенко</li>
                   <li>Формирование команды Управления коммуникаций и маркетинга (12 специалистов)</li>
                   <li>Участие в создании стратегии организации до 2030 года</li>
@@ -955,9 +960,9 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
             </div>
             <div class="cf-side">
               <div class="cf-video">
-                <h4 class="cf-label">Ролик к 10-летию Ассоциации</h4>
-                <div class="vlist">
-                  <a class="vrow vrow--solo" href="https://rutube.ru/video/b58726c9ba1d45283f6fd80eff622832/" target="_blank" rel="noopener" aria-label="Имиджевый ролик Добро.рф на Rutube"><span class="vid"><img src="img/dobro-video.webp" alt="" width="640" height="360" loading="lazy"><span class="play" aria-hidden="true"></span></span></a>
+                <div class="vpair">
+                  <div class="vcell"><h4 class="cf-label">Видеоподкаст «Одобрено»</h4><a class="vrow vrow--solo" href="https://dobro.press/videos/kak-byt-poleznym-obschestvu" target="_blank" rel="noopener" aria-label="Видеоподкаст «Одобрено»: Как быть полезным обществу?"><span class="vid"><img src="img/odobreno.webp" alt="" width="640" height="360" loading="lazy"><span class="play" aria-hidden="true"></span></span></a></div>
+                  <div class="vcell"><h4 class="cf-label">Ролик к 10-летию Ассоциации</h4><a class="vrow vrow--solo" href="https://rutube.ru/video/b58726c9ba1d45283f6fd80eff622832/" target="_blank" rel="noopener" aria-label="Имиджевый ролик Добро.рф на Rutube"><span class="vid"><img src="img/dobro-video.webp" alt="" width="640" height="360" loading="lazy"><span class="play" aria-hidden="true"></span></span></a></div>
                 </div>
               </div>
               <h4 class="cf-label cf-label--gap">Ключевое мероприятие</h4>
@@ -1013,8 +1018,8 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
         <h3 class="side-title">Ещё в медиа</h3>
         <ul class="side-list">
           <li><span class="num">2025–</span><span><strong><a href="https://www.rbc.ru/story/radio" target="_blank" rel="noopener">Вечернее деловое шоу ЧЭЗ на РБК</a>.</strong> <em>Ведение кроссплатформенного теле-радиоэфира.</em><span class="eps" aria-label="Эфиры ЧЭЗ, октябрь 2026"><span class="ep-lbl">Эфиры</span><span class="ep-day"><span class="ep-date">6 окт</span><a href="https://tv.rbc.ru/archive/chez/6ac514c52ae596c400d9bbad" target="_blank" rel="noopener" aria-label="ЧЭЗ, выпуск за 6 октября 2026, часть 1">1</a><a href="https://tv.rbc.ru/archive/chez/6ac528462ae596c400d9bbb0" target="_blank" rel="noopener" aria-label="ЧЭЗ, выпуск за 6 октября 2026, часть 2">2</a></span><span class="ep-day"><span class="ep-date">7 окт</span><a href="https://tv.rbc.ru/archive/chez/6ac6697f2ae596c400d9bbe1" target="_blank" rel="noopener" aria-label="ЧЭЗ, выпуск за 7 октября 2026, часть 1">1</a><a href="https://tv.rbc.ru/archive/chez/6ac66d342ae596c400d9bbe2" target="_blank" rel="noopener" aria-label="ЧЭЗ, выпуск за 7 октября 2026, часть 2">2</a></span><span class="ep-day"><span class="ep-date">8 окт</span><a href="https://tv.rbc.ru/archive/chez/6ac7d0e82ae5962ff6175ee1" target="_blank" rel="noopener" aria-label="ЧЭЗ, выпуск за 8 октября 2026, часть 1">1</a><a href="https://tv.rbc.ru/archive/chez/6ac7bea52ae5962ff6175ede" target="_blank" rel="noopener" aria-label="ЧЭЗ, выпуск за 8 октября 2026, часть 2">2</a></span></span></span></li>
-          <li><span class="num">2024</span><span><strong><a href="https://rusradio.ru/podcasts/ot-slov-k-delu" target="_blank" rel="noopener">«От слов к делу»</a>.</strong> <em>Подкаст на Русском радио.</em></span></li>
-          <li><span class="num">2024</span><span><strong><a href="https://dobro.press/themes/odobreno" target="_blank" rel="noopener">«Одобрено»</a>.</strong> <em>Видеоподкаст Артёма Метелева: запуск и продвижение.</em></span></li>
+          <li><span class="num">2024</span><span><strong><a href="https://rusradio.ru/podcasts/ot-slov-k-delu" target="_blank" rel="noopener">«От слов к делу»</a>.</strong> <em>Подкаст на Русском радио о лучших социальных проектах России и людях, меняющих мир.</em></span></li>
+          <li><span class="num">2024</span><span><strong><a href="https://dobro.press/themes/odobreno" target="_blank" rel="noopener">«Одобрено»</a>.</strong> <em>Видеоподкаст Артёма Метелева о социальных инициативах: подготовка и запуск.</em></span></li>
           <li><span class="num">2021</span><span><strong>CDO2DAY.</strong> <em>Отраслевое издание для руководителей цифровой трансформации: до 50 тыс. читателей в месяц, Digital Communications Awards-2021.</em></span></li>
           <li><span class="num">2016–2018</span><span><strong>«Коммерсантъ FM».</strong> <em>Автор программы <a href="https://www.kommersant.ru/theme/3121" target="_blank" rel="noopener">«Правила игры»</a>.</em></span></li>
         </ul>
