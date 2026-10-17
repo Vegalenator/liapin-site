@@ -279,7 +279,7 @@
 /* Layout: редакционная колонка 1160px; палитра с фото — графит пиджака, тёмно-синий, белый фон и оранжевый платок как единственный акцент */
 :root{
   --bg:#F3F5F8; --surface:#FFFFFF; --soft:#E8ECF2; --ink:#121A2C; --muted:#586277; --line:#D6DCE5;
-  --accent:#C4441C; --accent-ink:#FFFFFF; --brand-gpb:#2355D7;
+  --accent:#C4441C; --accent-ink:#FFFFFF; --brand-gpb:#2355D7; --brand-dobro:#570576;
   --hover:color-mix(in srgb, var(--accent) 6%, var(--surface));
   --f-display:'Piazzolla', 'PT Serif', Georgia, serif;
   --f-body:'Golos Text', system-ui, -apple-system, 'Segoe UI', sans-serif;
@@ -289,14 +289,14 @@
 @media (prefers-color-scheme: dark){
   :root:not([data-theme="light"]){
     --bg:#0D1220; --surface:#141A2B; --soft:#1A2236; --ink:#E7EAF0; --muted:#98A1B4; --line:#273049;
-    --accent:#F2693F; --accent-ink:#0D1220; --brand-gpb:#7C9DFF;
+    --accent:#F2693F; --accent-ink:#0D1220; --brand-gpb:#7C9DFF; --brand-dobro:#C79BEA;
     --hover:color-mix(in srgb, var(--accent) 9%, var(--surface));
     color-scheme:dark;
   }
 }
 :root[data-theme="dark"]{
   --bg:#0D1220; --surface:#141A2B; --soft:#1A2236; --ink:#E7EAF0; --muted:#98A1B4; --line:#273049;
-  --accent:#F2693F; --accent-ink:#0D1220; --brand-gpb:#7C9DFF;
+  --accent:#F2693F; --accent-ink:#0D1220; --brand-gpb:#7C9DFF; --brand-dobro:#C79BEA;
   --hover:color-mix(in srgb, var(--accent) 9%, var(--surface));
   color-scheme:dark;
 }
@@ -472,7 +472,9 @@ section{padding-block:80px}
 .cf-mark > svg:not(.logo-wide):not(.cf-wordmark):not(.cf-gpb-word){width:30px; height:auto}
 .cf-mark .cf-gpb-word{width:auto; height:15px; color:var(--brand-gpb)}
 .cf-sum .cf-mark .cf-wordmark{max-width:none; width:auto; height:30px}
-.cf-sum .cf-mark .cf-wordmark[viewBox="0 0 200 42"]{height:26px}
+.cf-sum .cf-mark .cf-wordmark[viewBox="0 0 200 42"]{height:26px; color:var(--brand-dobro)}
+.vrow.vrow--solo{grid-template-columns:minmax(0, 200px)}
+.vrow.vrow--solo .play{width:34px; height:34px}
 .cf-side > .cf-label{margin:0 0 -4px}
 .cf-side > .cf-label--gap{margin-top:12px}
 .cf-toggle{flex:none; width:36px; height:36px; border-radius:50%; border:1px solid var(--line); display:grid; place-items:center; background:var(--surface); transition:background-color .2s, border-color .2s}
@@ -928,7 +930,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
               <div class="cf-video">
                 <h4 class="cf-label">Ролик к 10-летию Ассоциации</h4>
                 <div class="vlist">
-                  <a class="vrow" href="https://rutube.ru/video/b58726c9ba1d45283f6fd80eff622832/" target="_blank" rel="noopener" aria-label="Имиджевый ролик Добро.рф на Rutube"><span class="vid"><img src="img/dobro-video.webp" alt="" width="640" height="360" loading="lazy"><span class="play" aria-hidden="true"></span></span><span class="vcap">Имиджевый ролик Добро.рф к ребрендингу организации</span></a>
+                  <a class="vrow vrow--solo" href="https://rutube.ru/video/b58726c9ba1d45283f6fd80eff622832/" target="_blank" rel="noopener" aria-label="Имиджевый ролик Добро.рф на Rutube"><span class="vid"><img src="img/dobro-video.webp" alt="" width="640" height="360" loading="lazy"><span class="play" aria-hidden="true"></span></span></a>
                 </div>
               </div>
               <h4 class="cf-label cf-label--gap">Ключевое мероприятие</h4>
