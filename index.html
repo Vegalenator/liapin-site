@@ -720,9 +720,80 @@ section{padding-block:80px}
 footer{padding-block:28px 96px; font-size:13px; color:var(--muted)}
 footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wrap}
 
+
+/* ---------- движение и детали ---------- */
+/* шапка: у верха страницы прозрачна, при прокрутке — матовое стекло с линией и шкалой прочтения */
+.top{transition:background-color .35s var(--ease), border-color .35s var(--ease)}
+.js .top:not(.scrolled){background:transparent; border-bottom-color:transparent; backdrop-filter:none; -webkit-backdrop-filter:none}
+.progress{position:absolute; left:0; right:0; bottom:-1px; height:2px; background:var(--accent); transform-origin:0 50%; transform:scaleX(var(--p, 0)); pointer-events:none}
+
+/* модульная сетка: четыре колонки тонкими линиями за содержимым */
+.hero, .dirs-sec, main > section:not(.contact){position:relative; isolation:isolate}
+.hero::before, .dirs-sec::before, main > section:not(.contact)::before{
+  content:""; position:absolute; top:0; bottom:0; left:50%; z-index:-1; pointer-events:none; box-sizing:border-box;
+  width:min(100%, 1160px); transform:translateX(-50%); padding-inline:max(16px, env(safe-area-inset-left, 0px));
+  --gl:color-mix(in srgb, var(--ink) 5.5%, transparent);
+  background:linear-gradient(to left, var(--gl) 1px, transparent 1px) content-box, linear-gradient(to right, var(--gl) 1px, transparent 1px) 0 0 / 25% 100% repeat-x content-box;
+}
+@media (min-width:720px){ .hero::before, .dirs-sec::before, main > section:not(.contact)::before{padding-inline:32px} }
+@media (max-width:760px){ .hero::before, .dirs-sec::before, main > section:not(.contact)::before{background:linear-gradient(to left, var(--gl) 1px, transparent 1px) content-box, linear-gradient(to right, var(--gl) 1px, transparent 1px) 0 0 / 50% 100% repeat-x content-box} }
+
+/* крупный контурный номер раздела */
+main > section[data-num]::after{
+  content:attr(data-num); position:absolute; z-index:-1; pointer-events:none; top:6px; right:max(32px, calc((100% - 1160px) / 2 + 32px));
+  font:400 clamp(84px, 8.6vw, 124px)/1 var(--f-display); letter-spacing:-.04em; color:transparent;
+  -webkit-text-stroke:1px color-mix(in srgb, var(--ink) 13%, transparent);
+}
+@media (max-width:760px){ main > section[data-num]::after{font-size:72px; top:8px; right:16px} }
+
+/* первый экран проявляется по очереди; портрет выходит из-за линии брендов */
+@keyframes rise{from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none}}
+@keyframes emerge{from{opacity:0; transform:translateY(46px)} to{opacity:1; transform:none}}
+@keyframes fadein{from{opacity:0} to{opacity:1}}
+.anim .hero-text > *{animation:rise .9s var(--ease) both}
+.anim .hero-text > :nth-child(1){animation-delay:.08s}
+.anim .hero-text > :nth-child(2){animation-delay:.16s}
+.anim .hero-text > :nth-child(3){animation-delay:.26s}
+.anim .hero-text > :nth-child(4){animation-delay:.36s}
+.anim .hero-text > :nth-child(5){animation-delay:.46s}
+.anim .hero-text > :nth-child(6){animation-delay:.54s}
+.hero-photo{overflow:hidden}
+.anim .hero-photo img{animation:emerge 1.25s cubic-bezier(.16,.8,.24,1) .3s both}
+.anim .brands .row{animation:fadein 1s var(--ease) .7s both}
+
+/* блоки проявляются при прокрутке, один раз */
+.anim .rv{opacity:0; transform:translateY(18px); transition:opacity .85s var(--ease), transform .85s var(--ease); transition-delay:var(--d, 0ms)}
+.anim .rv.in{opacity:1; transform:none}
+
+/* живые графики: столбики растут от базовой линии */
+.anim .cf-chart .bar{transform:scaleY(0); transform-box:fill-box; transform-origin:50% 100%; transition:transform 1.1s cubic-bezier(.2,.8,.2,1)}
+.anim .cf-chart .bar-b{transition-delay:.22s}
+.anim .cf-chart .v, .anim .cf-chart .k, .anim .cf-chart .conn{opacity:0; transition:opacity .6s var(--ease) .75s}
+.anim .cf-chart.play .bar{transform:none}
+.anim .cf-chart.play .v, .anim .cf-chart.play .k, .anim .cf-chart.play .conn{opacity:1}
+
+/* мягкий свет за курсором на плитках и подсвеченная рамка */
+@media (hover:hover) and (pointer:fine){
+  .spot::after{
+    content:""; position:absolute; inset:-1px; border-radius:inherit; padding:1px; pointer-events:none; opacity:0; transition:opacity .35s var(--ease);
+    background:radial-gradient(240px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 70%, transparent), transparent 70%);
+    -webkit-mask:linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite:xor;
+    mask:linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+  }
+  .spot:hover::after{opacity:1}
+  .tile.spot:hover, .alt .tile.spot:hover{background-image:radial-gradient(420px circle at var(--mx, 50%) var(--my, 50%), color-mix(in srgb, var(--accent) 8%, transparent), transparent 65%)}
+}
+
+/* контакты: глубина — зерно и тёплое свечение в углу */
+.contact{position:relative; isolation:isolate; overflow:hidden}
+.contact::before{content:""; position:absolute; inset:0; z-index:-1; pointer-events:none;
+  background:radial-gradient(700px circle at 88% -10%, color-mix(in srgb, var(--accent) 22%, transparent), transparent 62%), radial-gradient(520px circle at 0% 110%, color-mix(in srgb, var(--bg) 7%, transparent), transparent 60%)}
+.contact::after{content:""; position:absolute; inset:0; z-index:-1; pointer-events:none; opacity:.07; mix-blend-mode:screen;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 1 0 0 0 0 1 0 0 0 0 1 0 0 0 1 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
 </style>
 </head>
 <body>
+<script>document.documentElement.classList.add('js');if(!matchMedia('(prefers-reduced-motion: reduce)').matches)document.documentElement.classList.add('anim')</script>
 <header class="top">
   <div class="wrap">
     <a class="brand" href="#top">Александр Ляпин<b>.</b></a>
@@ -733,6 +804,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
       <a class="nav-cta" href="#contact">Связаться</a>
     </nav>
   </div>
+  <span class="progress" aria-hidden="true"></span>
 </header>
 
 <main id="top">
@@ -790,7 +862,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
     </div>
   </div>
 
-  <section id="comms" class="alt" aria-labelledby="comms-h">
+  <section id="comms" data-num="01" class="alt" aria-labelledby="comms-h">
     <div class="wrap">
       <div class="sec-head">
         <div><span class="mono sec-kicker">01 · Коммуникации</span><h2 id="comms-h">Кейсы</h2></div>
@@ -1011,7 +1083,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
     </div>
   </section>
 
-  <section id="media" aria-labelledby="media-h">
+  <section id="media" data-num="02" aria-labelledby="media-h">
     <div class="wrap">
       <div class="sec-head">
         <div><span class="mono sec-kicker">02 · Медиа</span><h2 id="media-h">Медиапроекты</h2></div>
@@ -1060,7 +1132,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
     </div>
   </section>
 
-  <section id="analytics" class="alt" aria-labelledby="an-h">
+  <section id="analytics" data-num="03" class="alt" aria-labelledby="an-h">
     <div class="wrap">
       <div class="sec-head">
         <div><span class="mono sec-kicker">03 · Аналитика</span><h2 id="an-h">Методики и исследования</h2></div>
@@ -1094,7 +1166,7 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
     </div>
   </section>
 
-  <section id="network" aria-labelledby="net-h">
+  <section id="network" data-num="04" aria-labelledby="net-h">
     <div class="wrap">
       <div class="sec-head">
         <div><span class="mono sec-kicker">04 · Профессиональные сообщества</span><h2 id="net-h">Нетворкинг</h2></div>
@@ -1254,6 +1326,72 @@ footer .wrap{display:flex; justify-content:space-between; gap:16px; flex-wrap:wr
   var mq=matchMedia('(prefers-color-scheme: dark)');
   if(mq.addEventListener) mq.addEventListener('change', draw);
   new MutationObserver(draw).observe(root,{attributes:true, attributeFilter:['data-theme']});
+})();
+</script>
+<script>
+(function(){
+  var root=document.documentElement, anim=root.classList.contains('anim');
+
+  /* шапка и шкала прочтения */
+  var top=document.querySelector('.top'), ticking=false;
+  function onScroll(){
+    ticking=false;
+    var y=window.scrollY, h=document.documentElement.scrollHeight-innerHeight;
+    top.classList.toggle('scrolled', y>8);
+    top.style.setProperty('--p', h>0 ? Math.min(1, y/h).toFixed(4) : 0);
+  }
+  addEventListener('scroll', function(){ if(!ticking){ ticking=true; requestAnimationFrame(onScroll); } }, {passive:true});
+  addEventListener('resize', onScroll); onScroll();
+
+  /* свет за курсором */
+  document.querySelectorAll('.tile:not(.case), .sp, .hl--link').forEach(function(t){
+    t.classList.add('spot');
+    t.addEventListener('pointermove', function(e){
+      var r=t.getBoundingClientRect();
+      t.style.setProperty('--mx', (e.clientX-r.left)+'px'); t.style.setProperty('--my', (e.clientY-r.top)+'px');
+    });
+  });
+
+  if(!anim || !('IntersectionObserver' in window)) return;
+
+  /* проявление блоков при прокрутке; соседи идут лесенкой */
+  var groups=['.sec-head', '.dirs > *', '.cases > li', '.shows > *', '.more-media', '.papers > *', '.nets > *', '.contact .wrap > *'];
+  var io=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(!e.isIntersecting) return;
+      var t=e.target; io.unobserve(t); t.classList.add('in');
+      setTimeout(function(){ t.classList.remove('rv','in'); t.style.removeProperty('--d'); }, 900+(parseInt(t.style.getPropertyValue('--d'))||0));
+    });
+  }, {rootMargin:'0px 0px -8% 0px'});
+  groups.forEach(function(sel){
+    document.querySelectorAll(sel).forEach(function(n){
+      var i=Array.prototype.indexOf.call(n.parentNode.children, n);
+      n.classList.add('rv'); if(i>0) n.style.setProperty('--d', Math.min(i, 5)*90+'ms'); io.observe(n);
+    });
+  });
+
+  /* графики: рост столбиков и счёт цифр при каждом раскрытии */
+  function count(t){
+    var src=t.dataset.src || (t.dataset.src=t.textContent), m=src.match(/\d+/);
+    if(!m || +m[0]<5){ return; }
+    var n=+m[0], from=src.indexOf('×')>-1 ? 1 : 0, t0=null;
+    function step(ts){
+      if(!t0) t0=ts; var k=Math.min(1, (ts-t0)/1100), v=Math.round(from+(n-from)*(1-Math.pow(1-k, 3)));
+      t.textContent=src.replace(m[0], v); if(k<1) requestAnimationFrame(step);
+    }
+    t.textContent=src.replace(m[0], from); setTimeout(function(){ requestAnimationFrame(step); }, 650);
+  }
+  var co=new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var f=e.target;
+      if(e.isIntersecting && !f.classList.contains('play')){ f.classList.add('play'); f.querySelectorAll('.v, .k').forEach(count); }
+    });
+  }, {threshold:.35});
+  document.querySelectorAll('.cf-chart').forEach(function(f){
+    co.observe(f);
+    var d=f.closest('details');
+    if(d) d.addEventListener('toggle', function(){ if(!d.open) f.classList.remove('play'); });
+  });
 })();
 </script>
 </body>
